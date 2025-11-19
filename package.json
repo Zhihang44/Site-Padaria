@@ -1,0 +1,25 @@
+{
+  "name": "site-padaria",
+  "version": "1.0.0",
+  "description": "Projeto padaria da amigoTech",
+  "homepage": "https://github.com/Zhihang44/Site-Padaria#readme",
+  "bugs": {
+    "url": "https://github.com/Zhihang44/Site-Padaria/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zhihang44/Site-Padaria.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  }
+}
