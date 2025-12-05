@@ -12,8 +12,7 @@ module.exports = {
             const novoProduto = await produtoService.criandoProduto({ nome, quantidade, preco, categoria });
             return res.status(201).json(novoProduto);
         } catch (error) {
-            console.error('Erro ao criar produto:', error);
-            return res.status(500).json({ error: 'Erro ao criar produto.' });
+            return res.status(500).json({ error: error.message });
         }
     },
     async listarProdutos(req, res) {
@@ -21,8 +20,7 @@ module.exports = {
             const produtos = await produtoService.listarTodosProdutos();
             return res.status(200).json(produtos);
         } catch (error) {
-            console.error('Erro ao listar produtos:', error);
-            return res.status(500).json({ error: 'Erro ao listar produtos.' });
+            return res.status(500).json({ error: error.message });
         }
     },
     async obterProdutoEspecifico(req, res){
