@@ -5,5 +5,6 @@ const prefix = '/api/';
 const productController = require('./controllers/productController');
 
 routes.post(`${prefix}produtos`, productController.createProduct);
+routes.delete(`${prefix}produtos/:id`, productController.deleteProduct);
 
 module.exports = routes;
