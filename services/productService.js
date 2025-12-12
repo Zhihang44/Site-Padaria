@@ -43,9 +43,23 @@ const getProductById = async (id) => {
     }
 };
 
+const updateProduct = async (id, updateData) => {
+    try {
+        const product = await Product.findByPk(id);
+        if (!product) {
+            throw new Error('Produto não encontrado.');
+        }
+        await product.update(updateData);
+        return product;
+    } catch (error) {
+        throw new Error('Erro ao atualizar produto: ' + error.message);
+    }
+};
+
 module.exports = {
     createProduct,
     deleteProduct,
     getAllProducts,
-    getProductById
+    getProductById,
+    updateProduct
 };
