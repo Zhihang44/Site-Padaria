@@ -20,8 +20,17 @@ const deleteProduct = async (id) => {
         throw new Error('Erro ao deletar produto: ' + error.message);
     }
 };
+const getAllProducts = async () => {
+    try {
+        const products = await Product.findAll();
+        return products;
+    } catch (error) {
+        throw new Error('Erro ao buscar produtos: ' + error.message);
+    }
+};
 
 module.exports = {
     createProduct,
-    deleteProduct   
+    deleteProduct,
+    getAllProducts
 };
