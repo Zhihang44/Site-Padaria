@@ -8,6 +8,7 @@ const createProduct = async (productData) => {
         throw new Error('Erro ao criar produto: ' + error.message);
     }
 };
+
 const deleteProduct = async (id) => {
     try {
         const product = await Product.findByPk(id);
@@ -20,6 +21,7 @@ const deleteProduct = async (id) => {
         throw new Error('Erro ao deletar produto: ' + error.message);
     }
 };
+
 const getAllProducts = async () => {
     try {
         const products = await Product.findAll();
@@ -29,8 +31,21 @@ const getAllProducts = async () => {
     }
 };
 
+const getProductById = async (id) => {
+    try {
+        const product = await Product.findByPk(id);
+        if (!product) {
+            throw new Error('Produto não encontrado.');
+        }
+        return product;
+    } catch (error) {
+        throw new Error('Erro ao buscar produto: ' + error.message);
+    }
+};
+
 module.exports = {
     createProduct,
     deleteProduct,
-    getAllProducts
+    getAllProducts,
+    getProductById
 };

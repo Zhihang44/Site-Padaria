@@ -12,6 +12,7 @@ const createProduct = async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 };
+
 const deleteProduct = async (req, res) => {
     try {
         const { id } = req.params;
@@ -23,6 +24,7 @@ const deleteProduct = async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 };
+
 const getAllProducts = async (req, res) => {
     try {
         const products = await productService.getAllProducts();
@@ -32,8 +34,19 @@ const getAllProducts = async (req, res) => {
     }
 };
 
+const getProductById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const product = await productService.getProductById(id);
+        return res.status(200).json(product);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     createProduct,
     deleteProduct,
-    getAllProducts
+    getAllProducts,
+    getProductById
 };
