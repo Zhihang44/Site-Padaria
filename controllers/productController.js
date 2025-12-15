@@ -1,17 +1,17 @@
 const productService = require('../services/productService');
+const { handleResponse, handleError, ERROR_MESSAGES } = require('../utils/utils');
 
 const createProduct = async (req, res) => {
     try {
         const { nome, quantidade, preco, categoria } = req.body;
-        if (!nome || !preco || !quantidade || !categoria) {
-            return res.status(400).json({ message: 'Todos os campos são obrigatórios.' });
-        }
+
         const newProduct = await productService.createProduct({ nome, quantidade, preco, categoria });
-        return res.status(201).json(newProduct);
+
+        handleResponse(res, 200, newProduct);
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        console.error('Error creating product:', error);
+        handleError(res, 500, error.message || ERROR_MESSAGES.INTERNAL_SERVER_ERROR);
     }
 };
-module.exports = {
-    createProduct
-};  
+
+module.exports = { createProduct };
