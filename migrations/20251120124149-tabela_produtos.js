@@ -10,20 +10,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nome: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      quantidade: {
+      quantity: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0
       },
-      preco: {
+      price: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false
       },
-      categoria: {
+      category: {
         type: Sequelize.STRING
       },
       createdAt: {
