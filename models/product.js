@@ -3,20 +3,20 @@ const { Model, DataTypes } = require('sequelize') ;
 class Product extends Model {
   static init(sequelize) {
     super.init({
-        nome: {
+        name: {
         type: DataTypes.STRING,
         allowNull: false
        },
-        quantidade: {
+        quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0
         },
-        preco: {
+        price: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false
         },
-        categoria: {
+        category: {
         type: DataTypes.STRING
         }
     }, 

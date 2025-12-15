@@ -2,11 +2,11 @@ const productService = require('../services/productService');
 
 const createProduct = async (req, res) => {
     try {
-        const { nome, quantidade, preco, categoria } = req.body;
-        if (!nome || !preco || !quantidade || !categoria) {
+        const { name, quantity, price, category } = req.body;
+        if (!name || !price || !quantity || !category) {
             return res.status(400).json({ message: 'Todos os campos são obrigatórios.' });
         }
-        const newProduct = await productService.createProduct({ nome, quantidade, preco, categoria });
+        const newProduct = await productService.createProduct({ name, quantity, price, category });
         return res.status(201).json(newProduct);
     } catch (error) {
         return res.status(500).json({ message: error.message });
