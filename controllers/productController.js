@@ -3,9 +3,9 @@ const { handleResponse, handleError, ERROR_MESSAGES } = require('../utils/utils'
 
 const createProduct = async (req, res) => {
     try {
-        const { nome, quantidade, preco, categoria } = req.body;
+        const { name, quantity, price, category } = req.body;
 
-        const newProduct = await productService.createProduct({ nome, quantidade, preco, categoria });
+        const newProduct = await productService.createProduct({ name, quantity, price, category });
 
         handleResponse(res, 200, newProduct);
     } catch (error) {
