@@ -13,9 +13,6 @@ const createProduct = async (productData) => {
 const deleteProduct = async (id) => {
     try {
         const product = await Product.findByPk(id);
-        if (!product) {
-            throw new Error('Produto não encontrado.');
-        }
         await product.destroy();
         return true;
     } catch (error) {
@@ -35,9 +32,6 @@ const getAllProducts = async () => {
 const getProductById = async (id) => {
     try {
         const product = await Product.findByPk(id);
-        if (!product) {
-            throw new Error('Produto não encontrado.');
-        }
         return product;
     } catch (error) {
         throw new Error(`${ERROR_MESSAGES.ERROR_FETCHING_PRODUCT} ${error.message}`);
