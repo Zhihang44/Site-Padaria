@@ -1,64 +1,17 @@
 const productService = require('../services/productService');
+const { handleResponse, handleError, ERROR_MESSAGES } = require('../utils/utils');
 
 const createProduct = async (req, res) => {
     try {
         const { name, quantity, price, category } = req.body;
-        if (!name || !price || !quantity || !category) {
-            return res.status(400).json({ message: 'Todos os campos são obrigatórios.' });
-        }
+
         const newProduct = await productService.createProduct({ name, quantity, price, category });
-        return res.status(201).json(newProduct);
+
+        handleResponse(res, 200, newProduct);
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        console.error('Error creating product:', error);
+        handleError(res, 500, error.message || ERROR_MESSAGES.INTERNAL_SERVER_ERROR);
     }
 };
 
-const deleteProduct = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const deleted = await productService.deleteProduct(id);
-        if (deleted) {
-            return res.status(200).json({ message: 'Produto deletado com sucesso.' });
-        } 
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-};
-
-const getAllProducts = async (req, res) => {
-    try {
-        const products = await productService.getAllProducts();
-        return res.status(200).json(products);
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-};
-
-const getProductById = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const product = await productService.getProductById(id);
-        return res.status(200).json(product);
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-};
-
-const updateProduct = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const updateData = req.body;
-        const updatedProduct = await productService.updateProduct(id, updateData);
-        return res.status(200).json(updatedProduct);
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-};  
-
-module.exports = {
-    createProduct,
-    deleteProduct,
-    getAllProducts,
-    getProductById,
-    updateProduct
-};
+module.exports = { createProduct };

@@ -25,18 +25,18 @@ if (config.use_env_variable) {
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (
-      file.indexOf('.') !== 0 &&      
-      file !== basename &&            
-      file.slice(-3) === '.js' &&     
-      file.indexOf('.test.js') === -1 
+      file.indexOf('.') !== 0 &&
+      file !== basename &&
+      file.slice(-3) === '.js' &&
+      file.indexOf('.test.js') === -1
     );
   })
   .forEach((file) => {
     const modelClass = require(path.join(__dirname, file));
 
     if (typeof modelClass.init === 'function') {
-      const model = modelClass.init(sequelize); 
-      db[model.name] = model; 
+      const model = modelClass.init(sequelize);
+      db[model.name] = model;
     }
   });
 
