@@ -52,4 +52,3 @@ module.exports = {
     getAllProducts,
     getProductById
 };
-module.exports = { createProduct };
