@@ -3,6 +3,10 @@ const { ERROR_MESSAGES } = require('../utils/utils');
 
 const createProduct = async (productData) => {
     try {
+        const product = await Product.findOne({ where: { name: productData.name } });
+        if (product) {
+            throw new Error(ERROR_MESSAGES.PRODUCT_ALREADY_EXISTS);
+        }
         const newProduct = await Product.create(productData);
         return newProduct;
     } catch (error) {
@@ -13,13 +17,13 @@ const deleteProduct = async (id) => {
     try {
         const product = await Product.findByPk(id);
         if (!product) {
-            throw new Error('Produto não encontrado.');
+            throw new Error(ERROR_MESSAGES.PRODUCT_NOT_FOUND);
         }
         await product.destroy();
         return true;
     } catch (error) {
-        throw new Error('Erro ao deletar produto: ' + error.message);
-    }
+        throw new Error(`${ERROR_MESSAGES.ERROR_DELETING_PRODUCT} ${error.message}`);
+     }
 };
 
 module.exports = {
