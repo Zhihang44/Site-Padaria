@@ -62,6 +62,7 @@ module.exports = {
     createProduct,
     deleteProduct,
     getAllProducts,
+    getProductById,
     updateProduct
 };
 
