@@ -25,7 +25,44 @@ const deleteProduct = async (req, res) => {
     }
 };
 
+const getAllProducts = async (req, res) => {
+    try {
+        const products = await productService.getAllProducts();
+        handleResponse(res, 200, products);
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        handleError(res, 500, error.message || ERROR_MESSAGES.INTERNAL_SERVER_ERROR);
+    }
+};
+
+const getProductById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const product = await productService.getProductById(id);
+        handleResponse(res, 200, product);
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        handleError(res, 500, error.message || ERROR_MESSAGES.INTERNAL_SERVER_ERROR);
+    }
+};
+
+const updateProduct = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updateData = req.body;
+        const updatedProduct = await productService.updateProduct(id, updateData);
+        handleResponse(res, 200, updatedProduct);
+    } catch (error) {
+        console.error('Error updating product:', error);
+        handleError(res, 500, error.message || ERROR_MESSAGES.INTERNAL_SERVER_ERROR);
+    }
+};
+
 module.exports = {
     createProduct,
-    deleteProduct
+    deleteProduct,
+    getAllProducts,
+    updateProduct
 };
+
+

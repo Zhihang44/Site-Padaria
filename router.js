@@ -5,7 +5,10 @@ const prefix = '/api/';
 const productController = require('./controllers/productController');
 const validateProduct = require('./middlewares/validateProduct');
 
+routes.delete(`${prefix}produtos/:id`,validateProduct, productController.deleteProduct);
+routes.get(`${prefix}produtos`, validateProduct, productController.getAllProducts);
+routes.get(`${prefix}produtos/:id`, validateProduct, productController.getProductById);
 routes.post(`${prefix}produtos`, validateProduct, productController.createProduct);
-routes.delete(`${prefix}produtos/:id`, validateProduct, productController.deleteProduct);
+routes.put(`${prefix}produtos/:id`, validateProduct, productController.updateProduct);
 
 module.exports = routes;
