@@ -1,4 +1,4 @@
-const Product = require ('../models/product');
+const {Product} = require ('../models/product');
 const { ERROR_MESSAGES } = require('../utils/utils');
 
 const createProduct = async (productData) => {
