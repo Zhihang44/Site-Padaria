@@ -29,6 +29,9 @@ const deleteProduct = async (id) => {
 const getAllProducts = async () => {
     try {
         const products = await Product.findAll();
+        if (!products) {
+            throw new Error(ERROR_MESSAGES.NO_PRODUCTS_FOUND);
+        }
         return products;
     } catch (error) {
         throw new Error(`${ERROR_MESSAGES.ERROR_FETCHING_PRODUCTS} ${error.message}`);
@@ -38,6 +41,9 @@ const getAllProducts = async () => {
 const getProductById = async (id) => {
     try {
         const product = await Product.findByPk(id);
+        if (!product) {
+            throw new Error(ERROR_MESSAGES.PRODUCT_NOT_FOUND);
+        }
         return product;
     } catch (error) {
         throw new Error(`${ERROR_MESSAGES.ERROR_FETCHING_PRODUCT} ${error.message}`);
