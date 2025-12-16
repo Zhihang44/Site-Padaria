@@ -22,7 +22,8 @@ const deleteProduct = async (req, res) => {
             return res.status(200).json({ message: 'Produto deletado com sucesso.' });
         } 
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        console.error('Error deleting product:', error);
+        handleError(res, 500, error.message || ERROR_MESSAGES.INTERNAL_SERVER_ERROR);
     }
 };
 
@@ -31,7 +32,8 @@ const getAllProducts = async (req, res) => {
         const products = await productService.getAllProducts();
         return res.status(200).json(products);
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        console.error('Error fetching products:', error);
+        handleError(res, 500, error.message || ERROR_MESSAGES.INTERNAL_SERVER_ERROR);
     }
 };
 
@@ -41,7 +43,8 @@ const getProductById = async (req, res) => {
         const product = await productService.getProductById(id);
         return res.status(200).json(product);
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        console.error('Error fetching product:', error);
+        handleError(res, 500, error.message || ERROR_MESSAGES.INTERNAL_SERVER_ERROR);
     }
 };
 

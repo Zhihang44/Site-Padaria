@@ -19,7 +19,7 @@ const deleteProduct = async (id) => {
         await product.destroy();
         return true;
     } catch (error) {
-        throw new Error('Erro ao deletar produto: ' + error.message);
+        throw new Error(`${ERROR_MESSAGES.ERROR_DELETING_PRODUCT} ${error.message}`);
     }
 };
 
@@ -28,7 +28,7 @@ const getAllProducts = async () => {
         const products = await Product.findAll();
         return products;
     } catch (error) {
-        throw new Error('Erro ao buscar produtos: ' + error.message);
+        throw new Error(`${ERROR_MESSAGES.ERROR_FETCHING_PRODUCTS} ${error.message}`);
     }
 };
 
@@ -40,7 +40,7 @@ const getProductById = async (id) => {
         }
         return product;
     } catch (error) {
-        throw new Error('Erro ao buscar produto: ' + error.message);
+        throw new Error(`${ERROR_MESSAGES.ERROR_FETCHING_PRODUCT} ${error.message}`);
     }
 };
 
