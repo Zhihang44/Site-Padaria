@@ -17,7 +17,8 @@ class Product extends Model {
             allowNull: false
         },
         category: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false
         }
     }, 
     { 
